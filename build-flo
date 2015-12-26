@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cp runBuild out/
+docker run -t -i -v `pwd`/out:/cm13 -v /tmp/ccache/:/tmp/ccache -e BRANCH='cm-13.0' -e EMAIL='miked63017@gmail.com' -e USERNAME='miked63017' cm13-flo
+
+

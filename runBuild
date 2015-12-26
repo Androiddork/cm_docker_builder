@@ -1,0 +1,16 @@
+#!/bin/bash
+
+cd /cm13
+/usr/bin/git config --global user.email "${EMAIL}"
+/usr/bin/git config --global user.name "${USERNAME}"
+yes | repo init -u ${REPO_URL} -b ${BRANCH} || exit 1
+pwd
+repo sync -j16  || exit 1
+pwd
+source build/envsetup.sh  || exit 1
+pwd
+breakfast ${DEVICE_CODENAME}  || exit 1
+pwd
+brunch ${DEVICE_CODENAME} || exit 1
+pwd
+find /cm13/out/ -iname "*.zip" || exit 1
