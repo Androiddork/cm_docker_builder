@@ -1,6 +1,12 @@
 #!/bin/bash
 
-cp runBuild out/
-docker run -t -i -v `pwd`/out:/cm13 -v /tmp/ccache/:/tmp/ccache -e BRANCH='cm-13.0' -e EMAIL='miked63017@gmail.com' -e USERNAME='miked63017' cm13-flo
+#Please set $USERNAME and $EMAIL as environment vars prior to running this script
+DEVICE="flo"
+USERNAME=${USERNAME}
+EMAIL=${EMAIL}
+BRANCH="cm-13.0"
 
+cp runBuild out/
+docker build -t cm13-builder .
+docker run -t -i -v `pwd`/out:/cm13 -v /tmp/ccache/:/tmp/ccache -e BRANCH=${BRANCH} -e EMAIL=${EMAIL} -e USERNAME=${USERNAME} -e DEVICE_CODENAME=${DEVICE} cm13-builder
 
