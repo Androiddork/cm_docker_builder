@@ -1,6 +1,6 @@
 Scripted CM build in docker container, see the flo build script and dockerfile for insight. Just need to change env vars around to build from different sources and for different devices.
 
-Run something similar to the following to build:
+Install Docker first, then run something similar to the following, as root or with sudo, to build:
 
 ```
 #emails and username for git/repo commands
@@ -9,3 +9,5 @@ export USERNAME="yourusername"
 
 ./build-kltespr
 ```
+
+
