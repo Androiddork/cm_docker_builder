@@ -7,6 +7,7 @@ yes | repo init -u ${REPO_URL} -b ${BRANCH} || exit 1
 pwd
 repo sync -j16  || exit 1
 pwd
+export USER=`whoami`
 source build/envsetup.sh  || exit 1
 pwd
 breakfast ${DEVICE_CODENAME}  || exit 1
