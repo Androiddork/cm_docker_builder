@@ -1,0 +1,32 @@
+#!/bin/bash
+
+cd /cm13
+/usr/bin/git config --global user.email "${EMAIL}"
+/usr/bin/git config --global user.name "${USERNAME}"
+yes | repo init -u ${REPO_URL} -b ${BRANCH} || exit 1
+pwd
+cd .repo
+git clone https://github.com/peyo-hd/local_manifests -b marshmallow
+cd ..
+repo sync -j64  || exit 1
+pwd
+export USER=`whoami`
+
+git clone https://github.com/raspberrypi/tools raspitools
+git clone https://github.com/Androiddork/raspipatches.git
+
+export PATH=`pwd`/raspitools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin/:$PATH
+cd kernel/rpi
+ARCH=arm scripts/kconfig/merge_config.sh arch/arm/configs/bcm2709_defconfig androiid/configs/androis-base.cfg android/configs/android-recommended.cfg
+ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make zImage
+ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make dtbs
+cd ../../
+
+patch frameworks/base/core/java/android/os/StrictMode.java < raspipatches/StrictMode.patch
+patch frameworks/base/core/java/android/view/GestureDetector.java < raspipatches/GestureDetector.patch
+
+source build/envsetup.sh  || exit 1
+lunch rpi2-eng
+make
+
+find /cm13/out/ -iname "*.img" || exit 1

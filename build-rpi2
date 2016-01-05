@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#Please set $USERNAME and $EMAIL as environment vars prior to running this script
+DEVICE="rpi2"
+USERNAME=${USERNAME}
+EMAIL=${EMAIL}
+BRANCH="android-6.0.1_r3"
+REPO_URL="https://android.googlesource.com/platform/manifest"
+
+cp runAOSPPiMallowBuild out/
+docker build -t cm13-builder .
+docker run -t -i -v `pwd`/out:/cm13 -v /tmp/ccache/:/ccache -e REPO_URL=${REPO_URL} -e BRANCH=${BRANCH} -e EMAIL=${EMAIL} -e USERNAME=${USERNAME} -e DEVICE_CODENAME=${DEVICE} cm13-builder /cm13/runAOSPPiMallowBuild
+
+
+
+

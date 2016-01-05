@@ -9,7 +9,7 @@ REPO_URL="https://www.github.com/Androiddork/android.git"
 
 cp runBuild out/
 docker build -t cm13-builder .
-docker run -t -i -v `pwd`/out:/cm13 -v /tmp/ccache/:/tmp/ccache -e REPO_URL=${REPO_URL} -e BRANCH=${BRANCH} -e EMAIL=${EMAIL} -e USERNAME=${USERNAME} -e DEVICE_CODENAME=${DEVICE} cm13-builder
+docker run -t -i -v `pwd`/out:/cm13 -v /tmp/ccache/:/ccache -e REPO_URL=${REPO_URL} -e BRANCH=${BRANCH} -e EMAIL=${EMAIL} -e USERNAME=${USERNAME} -e DEVICE_CODENAME=${DEVICE} cm13-builder
 
 
 

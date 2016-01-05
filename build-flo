@@ -8,5 +8,5 @@ BRANCH="cm-13.0"
 
 cp runBuild out/
 docker build -t cm13-builder .
-docker run -t -i -v `pwd`/out:/cm13 -v /tmp/ccache/:/tmp/ccache -e BRANCH=${BRANCH} -e EMAIL=${EMAIL} -e USERNAME=${USERNAME} -e DEVICE_CODENAME=${DEVICE} cm13-builder
+docker run -t -i -v `pwd`/out:/cm13 -v /tmp/ccache/:/ccache -e BRANCH=${BRANCH} -e EMAIL=${EMAIL} -e USERNAME=${USERNAME} -e DEVICE_CODENAME=${DEVICE} cm13-builder
 
