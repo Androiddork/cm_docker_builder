@@ -17,7 +17,7 @@ git clone https://github.com/Androiddork/raspipatches.git
 
 export PATH=`pwd`/raspitools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin/:$PATH
 cd kernel/rpi
-ARCH=arm scripts/kconfig/merge_config.sh arch/arm/configs/bcm2709_defconfig androiid/configs/androis-base.cfg android/configs/android-recommended.cfg
+ARCH=arm scripts/kconfig/merge_config.sh arch/arm/configs/bcm2709_defconfig androiid/configs/android-base.cfg android/configs/android-recommended.cfg
 ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make zImage
 ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make dtbs
 cd ../../
