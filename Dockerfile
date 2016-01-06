@@ -13,10 +13,10 @@ ENV REPO_URL https://www.github.com/CyanogenMod/android.git
 ENV BRANCH cm-13.0
 ENV DEVICE_CODENAME flo
 
-VOLUME ["/tmp/ccache", "/cm13"]
+VOLUME ["/ccache", "/cm13"]
 
 ENV USE_CCACHE 1
-ENV CCACHE_DIR /tmp/ccache
+ENV CCACHE_DIR /ccache
 
 CMD /cm13/runBuild
 
