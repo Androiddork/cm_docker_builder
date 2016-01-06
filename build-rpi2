@@ -12,5 +12,23 @@ docker build -t cm13-builder .
 docker run -t -i -v `pwd`/out:/cm13 -v /tmp/ccache/:/ccache -e REPO_URL=${REPO_URL} -e BRANCH=${BRANCH} -e EMAIL=${EMAIL} -e USERNAME=${USERNAME} -e DEVICE_CODENAME=${DEVICE} cm13-builder /cm13/runAOSPPiMallowBuild
 
 
+#  456  2016-01-06 08:18:52 fallocate -l 16G raspi2_marshmallow.img
+#  457  2016-01-06 08:18:59 fdisk raspi2_marshmallow.img 
+#  458  2016-01-06 08:21:37 kpartx -a raspi2_marshmallow.img 
+#  459  2016-01-06 08:22:03 mkfs.vfat /dev/mapper/loop2p1
+#  460  2016-01-06 08:22:27 mkfs.ext4 /dev/mapper/loop2p3
+#  461  2016-01-06 08:22:31 mkfs.ext4 /dev/mapper/loop2p4 
+#  462  2016-01-06 08:30:22 dd if=out/out/target/product/rpi2/system.img of=/dev/mapper/loop2p2 bs=1M
+#  463  2016-01-06 08:30:43 mount /dev/mapper/loop2p1 mnnt/
+#  464  2016-01-06 08:30:46 mkdir mnt
+#  465  2016-01-06 08:30:47 mount /dev/mapper/loop2p1 mnnt/
+#  466  2016-01-06 08:30:53 mount /dev/mapper/loop2p1 mnt/
+#  467  2016-01-06 08:31:14 cp out/device/brcm/rpi2/boot/* mnt/
+#  468  2016-01-06 08:31:36 cp out/kernel/rpi/arch/arm/boot/zImage mnt/
+#  469  2016-01-06 08:32:00 cp out/kernel/rpi/arch/arm/boot/dts/bcm2709-rpi-2-b.dtb mnt/
+#  470  2016-01-06 08:32:14 cp out/out/target/product/rpi2/ramdisk.img mnt/
+#  471  2016-01-06 08:32:22 umount mnt/
+#  472  2016-01-06 08:32:37 kpartx -d raspi2_marshmallow.img 
+#  473  2016-01-06 08:33:17 dd if=raspi2_marshmallow.img of=/dev/sdb
 
 
